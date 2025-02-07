@@ -1,5 +1,6 @@
 package com.loduone.damn.dto;
 
+import com.loduone.damn.model.TimeSlot;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -20,7 +21,7 @@ public class ExpertProfileDTO {
     double consultationFee; // Fee per session.
     double rating; // Average rating.
     boolean isVerified; // Profile verification status.
-
+    List<TimeSlot> availability;
     // Nested DTOs for Services and Reviews
     List<ServiceDTO> servicesOffered; // Custom service list.
     List<ReviewDTO> reviews; // Client feedback.

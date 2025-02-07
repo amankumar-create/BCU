@@ -23,7 +23,7 @@ public class ExpertProfile {
     private List<Service> servicesOffered; // Custom service list.
     private Double rating; // Average rating.
     private List<Review> reviews; // Client feedback.
-    private List<String> availability; // Available time slots.
+    private List<TimeSlot> availability; // Available time slots.
     private Boolean isVerified; // Profile verification status.
 
     // Nested Classes for Services and Reviews

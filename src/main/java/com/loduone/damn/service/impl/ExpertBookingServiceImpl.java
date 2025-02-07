@@ -4,6 +4,7 @@ import com.loduone.damn.dto.BookingRequest;
 import com.loduone.damn.enums.BookingStatus;
 import com.loduone.damn.model.Booking;
 import com.loduone.damn.repository.BookingRepository;
+import com.loduone.damn.service.BookingValidationService;
 import com.loduone.damn.service.ExpertBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ import static com.loduone.damn.enums.BookingStatus.PENDING;
 public class ExpertBookingServiceImpl implements ExpertBookingService {
     @Autowired
     private BookingRepository bookingRepository;
-
+    @Autowired
+    private BookingValidationService bookingValidationService;
 //    @Autowired
 //    private NotificationService notificationService;
 
@@ -30,13 +32,11 @@ public class ExpertBookingServiceImpl implements ExpertBookingService {
         booking.setStatus(PENDING);
         booking.setCreatedAt(Instant.now());
         booking.setUpdatedAt(Instant.now());
-
-        Booking savedBooking = bookingRepository.save(booking);
-
+        bookingValidationService.validateBooking(booking);
         // Notify expert about the new booking
 //        notificationService.notifyExpert(savedBooking.getExpertId(), "New booking request");
 
-        return savedBooking;
+        return bookingRepository.save(booking);
     }
 
 

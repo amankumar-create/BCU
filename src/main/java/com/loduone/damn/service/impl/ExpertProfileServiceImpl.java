@@ -87,6 +87,7 @@ public class ExpertProfileServiceImpl implements ExpertProfileService {
                 .consultationFee(profile.getConsultationFee())
                 .qualifications(profile.getQualifications())
                 .specializations(profile.getSpecializations())
+                .availability(profile.getAvailability())
                 .rating(profile.getRating())
                 .isVerified(profile.getIsVerified())
                 .reviews(profile.getReviews().stream()
@@ -120,6 +121,7 @@ public class ExpertProfileServiceImpl implements ExpertProfileService {
                         })
                         .collect(Collectors.toList()) :
                 Collections.emptyList());
+        expertProfile.setAvailability(expertProfileDTO.getAvailability());
         expertProfile.setConsultationFee(expertProfileDTO.getConsultationFee());
         expertProfile.setRating(expertProfileDTO.getRating());
         expertProfile.setReviews(expertProfileDTO.getReviews().stream()

@@ -34,6 +34,8 @@ public class PaymentServiceImpl implements PaymentService {
         Map<String, String> response = new HashMap<>();
         response.put("orderId", order.get("id"));
         response.put("amount", String.valueOf(amount));
+
+        System.out.println("oder id :" + order.get("id").toString());
         return response;
     }
 

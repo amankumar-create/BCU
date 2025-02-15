@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class BookingResponse {
     private String bookingId;
+    private String orderId;
     private String status;
     private String message;
 }

@@ -9,4 +9,5 @@ public class BookingRequest {
     private String expertId;
     private TimeSlot timeSlot;
     private String service;
+    private Integer totalFee;
 }

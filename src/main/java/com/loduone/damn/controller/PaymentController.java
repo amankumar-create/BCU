@@ -37,28 +37,6 @@ public class PaymentController {
         }
     }
 
-    @PostMapping("/verify-payment")
-    public ResponseEntity<Map<String, Object>> verifyPayment(@RequestBody Map<String, Object> data) {
-        try {
 
-            String paymentId = data.get("razorpay_payment_id").toString();
-            String orderId = data.get("razorpay_order_id").toString();
-            String signature = data.get("razorpay_signature").toString();
-
-            boolean isValid = paymentService.verifyPayment(paymentId, orderId, signature);
-
-            if (isValid) {
-                Map<String, Object> response = Collections.singletonMap("status", "Payment verified successfully");
-                return ResponseEntity.ok(response);
-            } else {
-                Map<String, Object> error = Collections.singletonMap("error", "Invalid signature");
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-            }
-        } catch (Exception e) {
-            Map<String, Object> error = new HashMap<>();
-            error.put("error", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
-        }
-    }
 
 }

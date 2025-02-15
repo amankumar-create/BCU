@@ -19,4 +19,5 @@ public class Booking {
     private BookingStatus status;
     private Instant createdAt;
     private Instant updatedAt;
+    private String orderId;
 }

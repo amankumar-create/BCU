@@ -3,6 +3,7 @@ package com.loduone.damn.service;
 import com.loduone.damn.core.ProcessingException;
 import com.loduone.damn.dto.ExpertProfileDTO;
 import com.loduone.damn.model.Booking;
+import com.loduone.damn.model.ExpertProfile;
 import com.loduone.damn.model.TimeSlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,8 @@ public class BookingValidationService {
     @Autowired
     ExpertProfileService expertProfileService;
 
-    public void validateBooking(Booking booking){
+    public void validateBooking(Booking booking, ExpertProfileDTO expertProfile){
         String expertId = booking.getExpertId();
-        String clientId = booking.getClientId();
         ExpertProfileDTO expertProfileDTO = expertProfileService.getProfileById(expertId);
         if(expertProfileDTO==null){
             String message = "Expert not found";
@@ -40,10 +40,10 @@ public class BookingValidationService {
     }
 
     public Boolean isTimeSlotAvailable(TimeSlot bookingSlot, List<TimeSlot> availability){
+        System.out.println(bookingSlot);
         return availability.stream()
                 .anyMatch(slot -> slot.getDate().equals(bookingSlot.getDate())
-                        && slot.getStartTime().equals(bookingSlot.getStartTime())
-                        && slot.getEndTime().equals(bookingSlot.getEndTime()));
+                        && slot.getStartTime().equals(bookingSlot.getStartTime()));
     }
 }
 

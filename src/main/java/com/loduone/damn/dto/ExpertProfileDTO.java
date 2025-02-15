@@ -8,7 +8,7 @@ import lombok.Value;
 import java.util.List;
 
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class ExpertProfileDTO {
     String id; // Auto-generated unique ID.
     String fullName;
